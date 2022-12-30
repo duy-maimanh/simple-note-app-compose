@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 
 @Composable
 fun SimpleNoteNavHost(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = "") {
-        simpleNoteAppHomeNavigation()
-    }
+  NavHost(navController = navHostController, startDestination = "") {
+    simpleNoteAppHomeNavigation()
+  }
 }

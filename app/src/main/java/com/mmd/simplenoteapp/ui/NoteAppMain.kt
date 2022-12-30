@@ -6,10 +6,8 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun NoteAppMain() {
-    val navHostController = rememberNavController()
+  val navHostController = rememberNavController()
 
-    LaunchedEffect(Unit) {
-
-    }
-
+  LaunchedEffect(Unit) {
+  }
 }
