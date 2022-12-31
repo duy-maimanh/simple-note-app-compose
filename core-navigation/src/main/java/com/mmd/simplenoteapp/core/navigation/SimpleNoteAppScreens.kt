@@ -16,7 +16,7 @@ sealed class SimpleNoteAppScreens(
   object Notes : SimpleNoteAppScreens("notes")
 
   // setting screen
-  object Setting : SimpleNoteAppScreens("setting")
+  object Settings : SimpleNoteAppScreens("setting")
 }
 
 private fun String.appendArguments(navArguments: List<NamedNavArgument>): String {
