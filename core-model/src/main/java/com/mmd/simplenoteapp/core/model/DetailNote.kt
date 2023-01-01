@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mmd.simplenoteapp.core.designsystem.theme
+package com.mmd.simplenoteapp.core.model
 
-import androidx.compose.ui.graphics.Color
+import java.util.Date
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+data class DetailNote(
+  override val id: Long,
+  override val message: String,
+  override val dateTime: Date,
+  val title: String,
+  val backgroundKey: String
+) : SimpleNote(id, message, dateTime)
