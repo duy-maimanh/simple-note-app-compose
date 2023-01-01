@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp
+package com.mmd.simplenoteapp.core.model
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import java.util.Date
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-  @Test
-  fun addition_isCorrect() {
-    assertEquals(4, 2 + 2)
-  }
-}
+data class DetailNote(
+  override val id: Long,
+  override val message: String,
+  override val createTime: Date,
+  override val notifyTime: Date,
+  val title: String,
+  val backgroundKey: String
+) : SimpleNote(id, message, createTime, notifyTime)
