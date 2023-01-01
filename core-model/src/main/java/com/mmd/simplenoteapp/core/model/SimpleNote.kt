@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.mmd.simplenoteapp.core.model
 
 import java.util.Date
@@ -20,5 +21,7 @@ import java.util.Date
 abstract class SimpleNote(
   open val id: Long,
   open val message: String,
-  open val dateTime: Date
+  open val createTime: Date,
+  // notifyTime null mean that there are no need to notify user.
+  open val notifyTime: Date? = null
 )

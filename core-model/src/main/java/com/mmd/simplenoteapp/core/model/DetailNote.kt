@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.mmd.simplenoteapp.core.model
 
 import java.util.Date
@@ -20,7 +21,8 @@ import java.util.Date
 data class DetailNote(
   override val id: Long,
   override val message: String,
-  override val dateTime: Date,
+  override val createTime: Date,
+  override val notifyTime: Date,
   val title: String,
   val backgroundKey: String
-) : SimpleNote(id, message, dateTime)
+) : SimpleNote(id, message, createTime, notifyTime)
