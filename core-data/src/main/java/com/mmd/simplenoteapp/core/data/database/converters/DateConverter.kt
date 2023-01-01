@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id("simplenoteapp.android.library")
-    id("simplenoteapp.android.hilt")
-    id("simplenoteapp.spotless")
-    id("com.google.devtools.ksp")
-}
 
-dependencies {
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+package com.mmd.simplenoteapp.core.data.database.converters
+
+import androidx.room.TypeConverter
+import java.util.Date
+
+object DateConverter {
+  @TypeConverter
+  fun toDate(dateLong: Long?): Date? {
+    return dateLong?.let { Date(it) }
+  }
+
+  @TypeConverter
+  fun fromDate(date: Date?): Long? {
+    return date?.time
+  }
 }
