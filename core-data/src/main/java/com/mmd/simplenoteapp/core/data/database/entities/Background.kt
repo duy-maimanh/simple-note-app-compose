@@ -14,19 +14,14 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.data.database.models
+package com.mmd.simplenoteapp.core.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "notes")
-data class Notes(
+@Entity
+data class Background(
   @PrimaryKey(autoGenerate = true)
-  val noteId: Long = 0
-) {
-  companion object {
-    fun fromDomain() {}
-  }
-
-  fun toDomain() {}
-}
+  val backgroundId: Long = 0,
+  val url: String
+)

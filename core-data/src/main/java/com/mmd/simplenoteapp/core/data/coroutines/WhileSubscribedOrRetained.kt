@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.data
+package com.mmd.simplenoteapp.core.data.coroutines
 
 import android.os.Handler
 import android.os.Looper
