@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.Flow
 interface NoteRepository {
   suspend fun addNotes(vararg note: SimpleNote)
 
-  fun getAllNote(): Flow<List<SimpleNote>>
+  fun getAllNote(): Flow<List<SimpleNote?>>
 
-  suspend fun deleteNote()
+  suspend fun deleteNote(note: SimpleNote)
 }

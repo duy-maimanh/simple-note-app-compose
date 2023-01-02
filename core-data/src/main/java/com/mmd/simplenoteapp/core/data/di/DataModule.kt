@@ -37,13 +37,15 @@ internal abstract class DataModule() {
   abstract fun bindsNoteRepository(noteRepository: NoteRepositoryImpl): NoteRepository
 
   companion object {
+    private const val DATABASE_NAME = "note-app.db"
+
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext applicationContext: Context): SimpleNoteAppDatabase {
       return Room.databaseBuilder(
         applicationContext,
         SimpleNoteAppDatabase::class.java,
-        "noteapp.db"
+        DATABASE_NAME
       ).build()
     }
 

@@ -22,10 +22,14 @@ import com.mmd.simplenoteapp.core.data.database.entities.Note
 import com.mmd.simplenoteapp.core.model.SimpleNote
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 
 internal class NoteRepositoryImpl @Inject constructor(private val notesDao: NotesDao) :
   NoteRepository {
+  companion object {
+    private const val TAG = "NoteRepositoryImpl"
+  }
+
   override suspend fun addNotes(vararg note: SimpleNote) {
     try {
       note.map {
@@ -34,15 +38,23 @@ internal class NoteRepositoryImpl @Inject constructor(private val notesDao: Note
         notesDao.addNotes(notes)
       }
     } catch (e: NullPointerException) {
-      Log.e("NoteRepositoryImpl", e.message.toString())
+      Log.e(TAG, e.message.toString())
     }
   }
 
-  override fun getAllNote(): Flow<List<SimpleNote>> {
-    TODO("Not yet implemented")
+  override fun getAllNote(): Flow<List<SimpleNote?>> {
+    return notesDao.getAllNotes().mapLatest { notes ->
+      notes.map { note ->
+        note.toDomain()
+      }
+    }
   }
 
-  override suspend fun deleteNote() {
-    TODO("Not yet implemented")
+  override suspend fun deleteNote(note: SimpleNote) {
+    try {
+      notesDao.deleteNote(Note.fromDomain(note)!!)
+    } catch (e: NullPointerException) {
+      Log.e(TAG, e.message.toString())
+    }
   }
 }
