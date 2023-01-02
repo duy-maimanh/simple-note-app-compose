@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.model
+package com.mmd.simplenoteapp.core.data.repository
 
-import java.util.Date
+import com.mmd.simplenoteapp.core.model.SimpleNote
+import kotlinx.coroutines.flow.Flow
 
-data class DetailNote(
-  override val id: Long,
-  override val message: String,
-  override val createTime: Date,
-  override val notifyTime: Date,
-  val title: String,
-  val backgroundKey: String
-) : SimpleNote(id, message, createTime, notifyTime)
+interface NoteRepository {
+  suspend fun addNotes(vararg note: SimpleNote)
+
+  fun getAllNote(): Flow<List<SimpleNote?>>
+
+  suspend fun deleteNote(note: SimpleNote)
+}

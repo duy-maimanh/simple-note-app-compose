@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.model
+package com.mmd.simplenoteapp.core.data.database
 
-import java.util.Date
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.mmd.simplenoteapp.core.data.database.converters.DateConverter
+import com.mmd.simplenoteapp.core.data.database.daos.NotesDao
+import com.mmd.simplenoteapp.core.data.database.entities.Note
 
-data class TodoNote(
-  override val id: Long,
-  override val message: String,
-  override val createTime: Date,
-  override val notifyTime: Date?,
-  val isDone: Boolean = false
-) : SimpleNote(id, message, createTime, notifyTime)
+@Database(entities = [Note::class], version = 1)
+@TypeConverters(DateConverter::class)
+abstract class SimpleNoteAppDatabase : RoomDatabase() {
+  abstract fun notesDao(): NotesDao
+}

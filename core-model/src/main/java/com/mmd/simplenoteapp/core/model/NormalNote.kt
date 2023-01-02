@@ -18,10 +18,11 @@ package com.mmd.simplenoteapp.core.model
 
 import java.util.Date
 
-data class TodoNote(
+data class NormalNote(
   override val id: Long,
   override val message: String,
   override val createTime: Date,
   override val notifyTime: Date?,
-  val isDone: Boolean = false
+  val title: String,
+  val backgroundId: Long
 ) : SimpleNote(id, message, createTime, notifyTime)

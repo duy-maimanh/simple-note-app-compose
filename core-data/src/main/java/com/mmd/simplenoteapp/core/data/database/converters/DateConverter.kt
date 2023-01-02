@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.model
+package com.mmd.simplenoteapp.core.data.database.converters
 
+import androidx.room.TypeConverter
 import java.util.Date
 
-data class TodoNote(
-  override val id: Long,
-  override val message: String,
-  override val createTime: Date,
-  override val notifyTime: Date?,
-  val isDone: Boolean = false
-) : SimpleNote(id, message, createTime, notifyTime)
+object DateConverter {
+  @TypeConverter
+  fun toDate(dateLong: Long?): Date? {
+    return dateLong?.let { Date(it) }
+  }
+
+  @TypeConverter
+  fun fromDate(date: Date?): Long? {
+    return date?.time
+  }
+}

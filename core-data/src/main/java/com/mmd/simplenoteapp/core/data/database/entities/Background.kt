@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.model
+package com.mmd.simplenoteapp.core.data.database.entities
 
-import java.util.Date
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class TodoNote(
-  override val id: Long,
-  override val message: String,
-  override val createTime: Date,
-  override val notifyTime: Date?,
-  val isDone: Boolean = false
-) : SimpleNote(id, message, createTime, notifyTime)
+@Entity
+data class Background(
+  @PrimaryKey(autoGenerate = true)
+  val backgroundId: Long = 0,
+  val url: String
+)

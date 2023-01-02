@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-package com.mmd.simplenoteapp.core.model
+package com.mmd.simplenoteapp.core.data.database.daos
 
-import java.util.Date
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import com.mmd.simplenoteapp.core.data.database.entities.Note
+import kotlinx.coroutines.flow.Flow
 
-data class TodoNote(
-  override val id: Long,
-  override val message: String,
-  override val createTime: Date,
-  override val notifyTime: Date?,
-  val isDone: Boolean = false
-) : SimpleNote(id, message, createTime, notifyTime)
+@Dao
+abstract class NotesDao {
+
+  @Query("SELECT * FROM notes")
+  abstract fun getAllNotes(): Flow<List<Note>>
+
+  @Insert
+  abstract fun addNotes(notes: List<Note>)
+
+  @Delete
+  abstract fun deleteNote(note: Note)
+}
