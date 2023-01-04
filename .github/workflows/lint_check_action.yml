@@ -5,49 +5,50 @@ env:
   CI: true
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 100
+  check-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 100
 
-    - name: Set up Java SDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
+      - name: Set up Java SDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
 
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
-      with:
-        arguments: build
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+        with:
+          arguments: build
 
-    - name: Install Ruby
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.7'
+      - name: Install Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
 
-    - name: Install bundler
-      run: gem install bundler:2.3.3
+      - name: Install bundler
+        run: gem install bundler:2.3.3
 
-    - name: Install bundle
-      run: bundle install --path vendor/bundle
+      - name: Install bundle
+        run: bundle install --path vendor/bundle
 
-    - name: Run Danger
-      env:
-        DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-      run: bundle exec danger --verbose
+      - name: Run Danger
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        run: bundle exec danger --verbose
 
-    - name: Build with Gradle
-      run: ./gradlew test koverMergedReport
+      - name: Build with Gradle
+        run: ./gradlew test koverMergedReport
 
-    - name: Kotlinx Kover Report
-      uses: mi-kas/kover-report@v1
-      with:
-        path: ${{ github.workspace }}/build/reports/kover/merged/xml/report.xml
-        token: ${{ secrets.GITHUB_TOKEN }}
-        title: UnitTest Coverage
-        update-comment: true
-        min-coverage-overall: 100
-        min-coverage-changed-files: 100
+      - name: Kotlinx Kover Report
+        uses: mi-kas/kover-report@v1
+        with:
+          path: ${{ github.workspace }}/build/reports/kover/merged/xml/report.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: UnitTest Coverage
+          update-comment: true
+          min-coverage-overall: 100
+          min-coverage-changed-files: 100
