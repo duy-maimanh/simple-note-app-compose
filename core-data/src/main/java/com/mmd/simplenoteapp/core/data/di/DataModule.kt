@@ -33,24 +33,24 @@ import javax.inject.Singleton
 @[Module InstallIn(SingletonComponent::class)]
 internal abstract class DataModule() {
 
-    @get:Binds
-    abstract val NoteRepositoryImpl.noteRepository: NoteRepository
+  @get:Binds
+  abstract val NoteRepositoryImpl.noteRepository: NoteRepository
 
-    companion object {
-        private const val DATABASE_NAME = "note-app.db"
+  companion object {
+    private const val DATABASE_NAME = "note-app.db"
 
-        @Provides
-        @Singleton
-        fun provideDatabase(@ApplicationContext applicationContext: Context): SimpleNoteAppDatabase {
-            return Room.databaseBuilder(
-                applicationContext,
-                SimpleNoteAppDatabase::class.java,
-                DATABASE_NAME
-            ).build()
-        }
-
-        @Provides
-        fun provideNotesDao(simpleNoteAppDatabase: SimpleNoteAppDatabase): NotesDao =
-            simpleNoteAppDatabase.notesDao()
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext applicationContext: Context): SimpleNoteAppDatabase {
+      return Room.databaseBuilder(
+        applicationContext,
+        SimpleNoteAppDatabase::class.java,
+        DATABASE_NAME
+      ).build()
     }
+
+    @Provides
+    fun provideNotesDao(simpleNoteAppDatabase: SimpleNoteAppDatabase): NotesDao =
+      simpleNoteAppDatabase.notesDao()
+  }
 }
