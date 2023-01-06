@@ -30,11 +30,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@[Module InstallIn(SingletonComponent::class)]
 internal abstract class DataModule() {
-  @Binds
-  abstract fun bindsNoteRepository(noteRepository: NoteRepositoryImpl): NoteRepository
+
+  @get:Binds
+  abstract val NoteRepositoryImpl.noteRepository: NoteRepository
 
   companion object {
     private const val DATABASE_NAME = "note-app.db"

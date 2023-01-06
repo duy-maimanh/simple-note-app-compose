@@ -21,9 +21,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.mmd.simplenoteapp.core.data.database.converters.DateConverter
 import com.mmd.simplenoteapp.core.data.database.daos.NotesDao
+import com.mmd.simplenoteapp.core.data.database.entities.Background
 import com.mmd.simplenoteapp.core.data.database.entities.Note
 
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class, Background::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class SimpleNoteAppDatabase : RoomDatabase() {
   abstract fun notesDao(): NotesDao

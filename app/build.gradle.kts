@@ -20,6 +20,7 @@ plugins {
     id("simplenoteapp.spotless")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 android {
@@ -81,4 +82,10 @@ dependencies {
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     testImplementation(libs.junit.junit4)
+}
+
+kover {
+    instrumentation {
+        excludeTasks.add("testReleaseUnitTest") // exclude testReleaseUnitTest from instrumentation
+    }
 }

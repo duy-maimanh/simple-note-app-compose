@@ -35,6 +35,7 @@ moshi = "1.14.0"
 spotless = "6.7.0"
 webviewInspector = "1.0.2"
 firebaseBom = "31.1.1"
+kover = "0.6.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -97,3 +98,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gms-googleServices = "com.google.gms.google-services:4.3.14"
 firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
