@@ -47,7 +47,7 @@ jobs:
       - name: Kotlinx Kover Report
         uses: mi-kas/kover-report@v1
         with:
-          path: ${{ github.workspace }}/build/reports/kover/merged/xml/report.xml
+          path: ${{ github.workspace }}/build/my-project-report/result.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           title: UnitTest Coverage
           update-comment: true
