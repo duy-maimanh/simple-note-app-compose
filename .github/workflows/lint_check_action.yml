@@ -30,11 +30,11 @@ jobs:
           ruby-version: '3.0' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-#      - name: Install bundler
-#        run: gem install bundler:2.3.3
+      - name: Install bundler
+        run: gem install bundler:2.3.3
 
-#      - name: Install bundle
-#        run: bundle install --path vendor/bundle
+      - name: Install bundle
+        run: bundle install --path vendor/bundle
 
       - name: Run Danger
         env:
